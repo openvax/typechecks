@@ -50,9 +50,7 @@ def require_integer(obj, name=None):
 
     If name is provided it is used in the exception message.
 
-    If nonzero=True, then an exception is raised if the integer is 0.
-
-    If positive=True, then an exception is raised if the integer is < 1.
+    This checks the type only; zero and negative integers are accepted.
     """
     require_instance(obj, integer_types, name, "integer")
 
