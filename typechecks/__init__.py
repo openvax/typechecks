@@ -1,6 +1,5 @@
 """
-Routines for testing or asserting that a value is certain type, in a way that
-works in both Python 2.7 and Python 3.4.
+Routines for testing or asserting that a value is a certain type on Python 3.11+.
 """
 from __future__ import print_function, division, absolute_import
 

@@ -1,5 +1,5 @@
- # coding=utf-8
-from nose.tools import assert_raises
+import pytest
+
 from typechecks import is_integer, require_integer
 
 def test_is_integer():
@@ -19,7 +19,7 @@ def test_require_integer():
     require_integer(0)
     require_integer(10)
     require_integer(-10)
-    with assert_raises(TypeError):
+    with pytest.raises(TypeError):
         require_integer("")
-    with assert_raises(TypeError):
+    with pytest.raises(TypeError):
         require_integer(None)

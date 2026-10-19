@@ -1,5 +1,5 @@
- # coding=utf-8
-from nose.tools import assert_raises
+import pytest
+
 from typechecks import is_string, require_string
 
 def test_is_string():
@@ -15,11 +15,11 @@ def test_is_string():
 
 def test_require_string():
     require_string("", nonempty=False)
-    with assert_raises(TypeError):
+    with pytest.raises(TypeError):
         require_string(0, nonempty=False)
-    with assert_raises(TypeError):
+    with pytest.raises(TypeError):
         require_string(0, nonempty=True)
-    with assert_raises(ValueError):
+    with pytest.raises(ValueError):
         require_string("", nonempty=True)
     require_string("1", nonempty=False)
     require_string("1", nonempty=True)

@@ -43,7 +43,7 @@ except Exception as e:
 if __name__ == '__main__':
     setup(
         name='typechecks',
-        version="0.1.1",
+        version="0.1.2",
         description="Helper functions for runtime type checking",
         author="Tim O'Donnell",
         author_email="tim.odonnell@mssm.edu",
@@ -56,7 +56,13 @@ if __name__ == '__main__':
             'Intended Audience :: Developers',
             'License :: OSI Approved :: Apache Software License',
             'Programming Language :: Python',
+            'Programming Language :: Python :: 3',
+            'Programming Language :: Python :: 3.11',
+            'Programming Language :: Python :: 3.12',
+            'Programming Language :: Python :: 3.13',
+            'Programming Language :: Python :: 3.14',
         ],
+        python_requires='>=3.11',
         install_requires=[],
         long_description=readme_restructured,
         packages=['typechecks'],
