@@ -23,22 +23,12 @@ readme_path = os.path.join(current_directory, readme_filename)
 
 # if README parsing fails, we'll still at least have this empty string
 try:
-    with open(readme_path, 'r') as f:
+    with open(readme_path, 'r', encoding='utf-8') as f:
         readme_markdown = f.read()
 except Exception as e:
     readme_markdown = ""
     print (e)
     print("Failed to open %s" % readme_path)
-
-try:
-    import pypandoc
-    readme_restructured = pypandoc.convert(readme_markdown, to='rst', format='md')
-except Exception as e:
-    readme_restructured = readme_markdown
-    print(e)
-    print("Conversion of long_description from MD to reStructuredText failed")
-    pass
-
 
 if __name__ == '__main__':
     setup(
@@ -64,6 +54,7 @@ if __name__ == '__main__':
         ],
         python_requires='>=3.11',
         install_requires=[],
-        long_description=readme_restructured,
+        long_description=readme_markdown,
+        long_description_content_type='text/markdown',
         packages=['typechecks'],
     )
