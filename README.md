@@ -2,6 +2,7 @@
 
 Check Python values at runtime and raise named errors when arguments have the
 wrong type. This is a small legacy utility, rather than a static type checker.
+Python 3.11 or later is required.
 
 ## Install
 
