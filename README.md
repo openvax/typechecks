@@ -47,9 +47,10 @@ print("valid")
 valid
 ```
 
-Use a reusable sequence such as a list: this implementation may traverse the
-input twice when a value is invalid. It is unsuitable for validating one-shot
-iterators without first materializing them.
+Validation traverses the input in a single pass. If you pass a one-shot
+iterator or generator, validating it consumes the iterator, so materialize it
+first (for example, `list(values)`) if you need to iterate over it again
+afterwards.
 
 ## Type semantics
 
