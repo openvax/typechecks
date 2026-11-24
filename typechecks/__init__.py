@@ -83,24 +83,22 @@ def require_iterable_of(objs, types, name=None, type_name=None, truncate_at=80):
     Raise an exception if objs is not an iterable with each element an instance
     of one of the specified types.
 
+    Validates in a single pass so one-shot iterators and generators raise the
+    expected `TypeError` instead of being exhausted on a second pass. Note that
+    passing a one-shot iterator consumes it.
+
     See `require_instance` for descriptions of the other parameters.
     """
-    # Fast pass for common case where all types are correct.
-    # This avoids the more expensive loop below. A typical speedup from this
-    # optimization is 6.6 sec -> 1.7 sec, for testing a list of size 10,000,000.
     try:
-        if all(isinstance(obj, types) for obj in objs):
-            return
+        iterator = iter(objs)
     except TypeError:
         # We don't require that objs is a list in this function, just that it's
         # iterable. We specify 'list' below as a convenient way to throw the
         # desired error.
         require_instance(objs, list, name, "iterable", truncate_at)
 
-    # Some type isn't correct. We reuse the require_instance function to raise
-    # the exception.
-    prefix = ("%s: " % name) if name else ""
-    for (i, obj) in enumerate(objs):
-        element_name = prefix + ("element at index %d" % i)
-        require_instance(obj, types, element_name, type_name, truncate_at)
-    assert False, "Shouldn't reach here."
+    for (i, obj) in enumerate(iterator):
+        if not isinstance(obj, types):
+            prefix = ("%s: " % name) if name else ""
+            element_name = prefix + ("element at index %d" % i)
+            require_instance(obj, types, element_name, type_name, truncate_at)

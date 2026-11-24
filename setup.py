@@ -33,7 +33,7 @@ except Exception as e:
 if __name__ == '__main__':
     setup(
         name='typechecks',
-        version="0.1.2",
+        version="0.1.3",
         description="Helper functions for runtime type checking",
         author="Tim O'Donnell",
         author_email="tim.odonnell@mssm.edu",
